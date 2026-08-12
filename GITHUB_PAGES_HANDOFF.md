@@ -1,21 +1,25 @@
-# Handoff: Publish Blue Route Privacy Policy on GitHub Pages
+# Handoff: Publish Blue Route legal pages on GitHub Pages
 
-This document is a **self-contained handoff** for the agent working in the new public repository **`MicahHeneveld/blueroute-legal`**. You do not have access to the private Blue Route app repo — everything you need is in this file. Your job is to create a small public GitHub Pages site that hosts the Blue Route Privacy Policy and verify it is live.
+This document is a **self-contained handoff** for the agent working in the new public repository **`MicahHeneveld/blueroute-legal`**. You do not have access to the private Blue Route app repo — everything you need is in this file. Your job is to create a small public GitHub Pages site that hosts the Blue Route Privacy Policy, Support page, and Account Deletion page, then verify all three are live.
 
 ---
 
 ## 1. Context
 
 - **Product:** Blue Route — a walking/fitness course app for students (iOS + Android).
-- **Why this site exists:** Apple App Store requires every app to have a publicly accessible Privacy Policy URL (no login, no paywall, no JS-only rendering) that stays live as long as the app is on the store. The URL is entered into App Store Connect.
-- **Target URL:** `https://micahheneveld.github.io/blueroute-legal/`
-- **Requirements the page must satisfy:**
+- **Why this site exists:** App stores require publicly accessible URLs for the Privacy Policy (Apple + Google), Support (Apple + Google), and Account Deletion (Google). No login, no paywall, no JS-only rendering — each URL must return HTTP 200 from a plain GET.
+- **Target URLs:**
+  - `https://micahheneveld.github.io/blueroute-legal/` (Privacy Policy)
+  - `https://micahheneveld.github.io/blueroute-legal/support.html` (Support)
+  - `https://micahheneveld.github.io/blueroute-legal/account-deletion.html` (Account Deletion)
+- **Requirements every page must satisfy:**
   - Public HTTPS URL.
-  - Returns HTTP 200 from anywhere in the world (Apple's reviewer clicks the link server-side).
+  - Returns HTTP 200 from anywhere in the world (store reviewers click the link server-side).
   - No authentication, cookie wall, age gate, or JS-only content.
-  - Must render on a plain HTTP GET.
-  - Should be `noindex, nofollow` so search engines skip it (Apple's reviewers still reach it via the direct URL).
-- **Brand/app name to use on the page:** "Blue Route".
+  - Must render on a plain HTTP GET (minimal inline CSS, no frameworks).
+  - Should be `noindex, nofollow` so search engines skip it (store reviewers still reach it via the direct URL).
+- **Brand/app name to use on the pages:** "Blue Route".
+- **Contact email used on all pages:** `mheneveld@csumb.edu`.
 
 ---
 
@@ -29,22 +33,24 @@ Expected file layout:
 
 ```
 blueroute-legal/
-├── index.html      # the privacy policy (single page, plain HTML + minimal CSS)
-├── robots.txt      # disallow all crawlers
-└── README.md       # short description of the repo
+├── index.html              # the privacy policy (single page, plain HTML + minimal CSS)
+├── support.html            # support/contact page
+├── account-deletion.html   # account deletion instructions + web request path
+├── robots.txt              # disallow all crawlers
+└── README.md               # short description of the repo
 ```
 
 ---
 
-## 3. Page content (authoritative copy)
+## 3. Privacy Policy page content (authoritative copy)
 
-Use the following as the **exact body content** of `index.html`. Do not change wording — it must match the App Store Connect privacy questionnaire answers for this app. You may wrap it in simple, clean HTML (`<h1>`, `<h2>`, `<p>`, `<ul>`, `<table>` as appropriate). Include `<meta name="robots" content="noindex, nofollow">` in the `<head>`.
+Use the following as the **exact body content** of `index.html`. Do not change wording — it must match the App Store Connect privacy questionnaire answers and the Google Play Data Safety form answers for this app. You may wrap it in simple, clean HTML (`<h1>`, `<h2>`, `<p>`, `<ul>`, `<table>` as appropriate). Include `<meta name="robots" content="noindex, nofollow">` in the `<head>`.
 
 ---
 
 ### Privacy Policy — Blue Route
 
-**Effective date:** August 5, 2026
+**Effective date:** August 12, 2026
 
 This Privacy Policy describes how **Blue Route** ("we", "our", "us") collects, uses, and shares information when you use our mobile application and related services. "Blue Route" is a walking and fitness course app that students use to track walks, progress through a journey, and complete class assignments.
 
@@ -126,8 +132,10 @@ We retain personal data only as long as needed for the purposes described in thi
 
 #### 6. How to delete your data
 
-- **In-app:** You can remove walk photos and edit profile content from within the app.
-- **Account deletion:** Contact us using the email in Section 9 to request account deletion. We will delete your personal data and walk records, except where we are required by law or by your institution's record-keeping obligations to retain them.
+You can request complete deletion of your account and all associated data at any time. Deletion removes your profile, walk records, photos, submissions, quiz attempts, and notification data, and permanently closes your account.
+
+- **In-app:** Open the app → **Profile** tab → scroll to the bottom → **Delete account**. You'll be asked to confirm; deletion is permanent and cannot be undone. The app then clears locally stored data on your device.
+- **Web request:** If you cannot use the in-app option, you can request deletion by visiting our [Account Deletion page](https://micahheneveld.github.io/blueroute-legal/account-deletion.html) or by emailing us at the address in Section 9. We will process your request promptly and confirm to you.
 - **Canvas-linked cohorts:** Deletion of data may require coordination with your institution because course records may belong to the institution.
 
 When you request deletion, we will process it promptly and confirm to you.
@@ -175,6 +183,57 @@ We may update this Privacy Policy from time to time. When we do, we will revise 
 - Title tag: `Blue Route — Privacy Policy`.
 - Keep styling minimal and inline (a max-width container, system font, basic spacing). No JavaScript required; the page must render fully without JS.
 
+### `support.html`
+
+- Standard HTML5 document, same `robots noindex, nofollow` meta.
+- Title tag: `Blue Route — Support`.
+- Content (plain-language, short):
+
+```
+Blue Route Support
+
+Need help with the Blue Route app? We're happy to assist.
+
+Contact us
+Email: mheneveld@csumb.edu
+
+We typically respond within 1–2 business days. For urgent issues during a
+course, tell your instructor first — they can coordinate with us.
+```
+
+- Use the same minimal inline CSS container as `index.html`.
+
+### `account-deletion.html`
+
+- Standard HTML5 document, same `robots noindex, nofollow` meta.
+- Title tag: `Blue Route — Account Deletion`.
+- Content (plain-language, short) — this is the web-request path Google Play requires:
+
+```
+Account Deletion
+
+You can delete your Blue Route account and all associated data directly in the
+app:
+
+1. Open the Blue Route app.
+2. Go to the Profile tab.
+3. Scroll to the bottom and tap "Delete account".
+4. Confirm the deletion when prompted.
+
+Deletion is permanent and removes your profile, walk history, photos,
+submissions, quiz attempts, and notification data. It cannot be undone.
+
+If you can't use the in-app option, request deletion by email:
+
+Email: mheneveld@csumb.edu
+Subject: Account deletion request
+Include: the email address linked to your Blue Route account.
+
+We will process your request and confirm within 30 days.
+```
+
+- Use the same minimal inline CSS container as `index.html`.
+
 ### `robots.txt`
 
 ```
@@ -192,21 +251,23 @@ Short description, e.g.:
 
 ## 5. Publish steps
 
-1. Commit all three files to `main` and push to GitHub.
+1. Commit all files to `main` and push to GitHub.
 2. Repo → **Settings** → **Pages**.
 3. Under **Build and deployment**, set **Source = Deploy from a branch**, **Branch = main**, folder **/ (root)**.
 4. Save. Wait ~1 minute for the first deploy.
-5. Confirm the site is live at: `https://micahheneveld.github.io/blueroute-legal/`
+5. Confirm the site is live at the three URLs in Section 1.
 
 ---
 
 ## 6. Verification checklist (do all)
 
 - [ ] `curl -I https://micahheneveld.github.io/blueroute-legal/` returns **HTTP 200**.
-- [ ] The page loads in an **incognito/private window** with no cookies, no login, no challenge.
-- [ ] The page renders without JavaScript enabled.
-- [ ] The `<head>` contains `<meta name="robots" content="noindex, nofollow">`.
-- [ ] The content matches the policy text in Section 3 exactly.
+- [ ] `curl -I https://micahheneveld.github.io/blueroute-legal/support.html` returns **HTTP 200**.
+- [ ] `curl -I https://micahheneveld.github.io/blueroute-legal/account-deletion.html` returns **HTTP 200**.
+- [ ] Each page loads in an **incognito/private window** with no cookies, no login, no challenge.
+- [ ] Each page renders without JavaScript enabled.
+- [ ] Each `<head>` contains `<meta name="robots" content="noindex, nofollow">`.
+- [ ] The `index.html` content matches the policy text in Section 3 exactly.
 - [ ] `https://micahheneveld.github.io/blueroute-legal/robots.txt` returns the disallow-all content.
 
 ---
@@ -215,8 +276,8 @@ Short description, e.g.:
 
 Report the following to the requester:
 
-1. The final live URL.
-2. The raw output of `curl -I https://micahheneveld.github.io/blueroute-legal/` (must show `200`).
+1. The final live URLs (all three).
+2. The raw output of `curl -I` for each URL (must show `200`).
 3. Confirmation each item in Section 6 passed (or the failure + what was fixed).
 4. Any wording you had to change from Section 3 and why (there should be none unless requested).
 
@@ -226,7 +287,9 @@ Report the following to the requester:
 
 These are handled by the Blue Route app owner, not by you:
 
-- Paste the final URL into App Store Connect → App Information → **Privacy Policy URL**.
-- Paste the same URL into App Store Connect → the version's page → **Privacy Policy URL**.
-- Keep the URL live for the entire lifetime of the app on the store.
-- Keep the content in sync with the app's App Privacy questionnaire (source of truth: the private repo's `docs/PRIVACY_POLICY.md` and `docs/APP_STORE_PRIVACY.md`).
+- Paste the final URLs into App Store Connect and Google Play Console:
+  - **Privacy Policy URL:** `https://micahheneveld.github.io/blueroute-legal/`
+  - **Support URL:** `https://micahheneveld.github.io/blueroute-legal/support.html`
+  - **Account Deletion URL:** `https://micahheneveld.github.io/blueroute-legal/account-deletion.html`
+- Keep all URLs live for the entire lifetime of the app on the stores.
+- Keep the content in sync with the app's App Privacy questionnaire and Data Safety form (source of truth: the private repo's `docs/PRIVACY_POLICY.md`, `docs/APP_STORE_PRIVACY.md`, and `docs/GOOGLE_PLAY_SUBMISSION.md`).

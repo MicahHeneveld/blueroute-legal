@@ -1,6 +1,6 @@
 # Privacy Policy — Blue Route
 
-**Effective date:** August 5, 2026
+**Effective date:** August 12, 2026
 
 This Privacy Policy describes how **Blue Route** ("we", "our", "us") collects, uses, and shares information when you use our mobile application and related services. "Blue Route" is a walking and fitness course app that students use to track walks, progress through a journey, and complete class assignments.
 
@@ -94,8 +94,10 @@ We retain personal data only as long as needed for the purposes described in thi
 
 ## 6. How to delete your data
 
-- **In-app:** You can remove walk photos and edit profile content from within the app.
-- **Account deletion:** Contact us using the email in Section 9 to request account deletion. We will delete your personal data and walk records, except where we are required by law or by your institution's record-keeping obligations to retain them.
+You can request complete deletion of your account and all associated data at any time. Deletion removes your profile, walk records, photos, submissions, quiz attempts, and notification data, and permanently closes your account.
+
+- **In-app:** Open the app → **Profile** tab → scroll to the bottom → **Delete account**. You'll be asked to confirm; deletion is permanent and cannot be undone. The app then clears locally stored data on your device.
+- **Web request:** If you cannot use the in-app option, you can request deletion by visiting our [Account Deletion page](https://micahheneveld.github.io/blueroute-legal/account-deletion.html) or by emailing us at the address in Section 9. We will process your request promptly and confirm to you.
 - **Canvas-linked cohorts:** Deletion of data may require coordination with your institution because course records may belong to the institution.
 
 When you request deletion, we will process it promptly and confirm to you.
